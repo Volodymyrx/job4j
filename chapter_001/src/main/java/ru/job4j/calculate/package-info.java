@@ -6,4 +6,4 @@
 *@version 1.2
 *@since 05.10.2018 
 */
-package ru.job4j.calculate
+package ru.job4j.calculate;
