@@ -7,8 +7,8 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 /**
-* Test for class Calculate
-*added excemple fromv 'JUnit.docx'
+* Test for class Calculate.
+*added excemple fromv 'JUnit.docx'.
 **@author Volodymyr Martynenko (VolodymyrV.Martynenko@gmail.com)
 *project job4j lesson 1.4
 *@since 06.10.2018 
@@ -16,14 +16,14 @@ import static org.junit.Assert.assertThat;
 */
 public class CalculateTest {
 	/**
-	* Test method main
+	* Test method main.
 	*/
 	@Test
 	public void whenAddOneToOneThenTwo() {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
 		Calculate.main(null);
-		assertThat(out.toString(),  is ("Hello World\r\n"));
+		assertThat(out.toString(), is("Hello World\r\n"));
 	}
 	
 	/**
