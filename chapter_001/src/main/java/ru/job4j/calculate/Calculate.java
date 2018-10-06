@@ -7,15 +7,13 @@ package ru.job4j.calculate;
 *@since 06.10.2018 
 *@version 1.4
 */
-public class Calculate
-{
+public class Calculate {
 	/**
 	*main
 	*@param args -args, can be nothing
 	*@return - nothing, print on console text 'Hello world'
 	*/
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) 	{
 		System.out.println("Hello World");
 	}
 	
