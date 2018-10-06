@@ -11,7 +11,7 @@ public class Calculate {
 	/**
 	*main
 	*@param args -args, can be nothing
-	*@return - nothing, print on console text 'Hello world'
+	* print on console text 'Hello world'
 	*/
 	public static void main(String[] args) 	{
 		System.out.println("Hello World");
