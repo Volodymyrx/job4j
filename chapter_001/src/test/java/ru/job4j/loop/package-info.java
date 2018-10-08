@@ -1,8 +1,10 @@
 /**
- * Package for test class Counter
+ * Package for test
+ * class Counter
+ * class Factorial
  *
  * @author Volodymyr Martynenko (VolodymyrV.Martynenko@gmail.com)
- * project job4j lesson 5.1
+ * project job4j lesson 5.2
  * @version 1.0
  * @since 08.10.2018
  */
