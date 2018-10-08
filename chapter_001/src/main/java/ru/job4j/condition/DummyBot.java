@@ -5,7 +5,7 @@ package ru.job4j.condition;
  *
  * @author Volodymyr Martynenko (VolodymyrV.Martynenko@gmail.com)
  * project job4j lesson 4.1
- * @version 1.0
+ * @version 1.1
  * @since 08.10.2018
  */
 public class DummyBot {
