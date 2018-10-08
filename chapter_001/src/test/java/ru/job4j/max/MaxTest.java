@@ -9,7 +9,7 @@ import static org.junit.Assert.assertThat;
  * MaxTest
  *
  * @author Volodymyr Martynenko (VolodymyrV.Martynenko@gmail.com)
- * project job4j lesson 4.2
+ * project job4j lesson 4.4
  * @version 1.0
  * @since 08.10.2018
  */
@@ -28,5 +28,26 @@ public class MaxTest {
         Max maxim = new Max();
         int result = maxim.max(2, 1);
         assertThat(result, is(2));
+    }
+
+    @Test
+    public void whenFirstBiggest() {
+        Max maxim = new Max();
+        int result = maxim.max(2, 1, -3);
+        assertThat(result, is(2));
+    }
+
+    @Test
+    public void whenSecondBiggest() {
+        Max maxim = new Max();
+        int result = maxim.max(2, 4, -3);
+        assertThat(result, is(4));
+    }
+
+    @Test
+    public void whenThirdBiggest() {
+        Max maxim = new Max();
+        int result = maxim.max(2, 1, 3);
+        assertThat(result, is(3));
     }
 }

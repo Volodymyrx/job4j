@@ -2,7 +2,7 @@
  * Package for test class Max
  *
  * @author Volodymyr Martynenko (VolodymyrV.Martynenko@gmail.com)
- * project job4j lesson 4.2
+ * project job4j lesson 4.4
  * @version 1.0
  * @since 08.10.2018
  */
