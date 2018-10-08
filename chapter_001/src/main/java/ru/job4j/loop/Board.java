@@ -6,7 +6,7 @@ package ru.job4j.loop;
  *
  * @author Volodymyr Martynenko (VolodymyrV.Martynenko@gmail.com)
  * project job4j lesson 5.3
- * @version 1.0
+ * @version 1.1
  * @since 08.10.2018
  */
 public class Board {
@@ -19,8 +19,8 @@ public class Board {
     public String paint(int width, int height) {
         StringBuilder screen = new StringBuilder();
         String ln = System.lineSeparator();
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
                 // условие проверки, что писать пробел или X
                 // Выше в задании мы определили закономерность, когда нужно проставлять X
                 if ((i + j) % 2 == 0) {
@@ -34,10 +34,10 @@ public class Board {
         }
         return screen.toString();
     }
-//для визуальной отладки
+////для визуальной отладки
 //    public static void main(String[] args) {
 //        Board board = new Board();
-//        System.out.println(board.paint(6, 8));
+//        System.out.println(board.paint(6, 6));
 //    }
 
 

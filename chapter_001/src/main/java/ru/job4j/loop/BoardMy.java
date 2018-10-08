@@ -6,7 +6,7 @@ package ru.job4j.loop;
  *
  * @author Volodymyr Martynenko (VolodymyrV.Martynenko@gmail.com)
  * project job4j lesson 5.3
- * @version 1.0
+ * @version 1.1
  * @since 08.10.2018
  */
 public class BoardMy {
@@ -20,7 +20,7 @@ public class BoardMy {
         String result = "";
         boolean flagI = true;
         boolean flagJ = true;
-        for (int i = 0; i < width; i++) {
+        for (int i = 0; i < height; i++) {
             if (flagI) {
                 flagJ = true;
                 flagI = false;
@@ -28,7 +28,7 @@ public class BoardMy {
                 flagJ = false;
                 flagI = true;
             }
-            for (int j = 0; j < height; j++) {
+            for (int j = 0; j < width; j++) {
                 if (flagJ) {
                     result += "X";
                     flagJ = false;
@@ -41,11 +41,11 @@ public class BoardMy {
         }
         return result;
     }
-//для визуальной отладки
+////для визуальной отладки
 //    public static void main(String[] args) {
 //        BoardMy board = new BoardMy();
-//        System.out.println(board.paintMy(6, 8));
+//        System.out.println(board.paintMy(6, 4));
 //    }
-//
+
 
 }
