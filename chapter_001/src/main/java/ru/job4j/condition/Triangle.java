@@ -1,0 +1,75 @@
+package ru.job4j.condition;
+
+/**
+ * Triangle calculate area
+ *
+ * @author Volodymyr Martynenko (VolodymyrV.Martynenko@gmail.com)
+ * project job4j lesson 4.3
+ * @version 1.0
+ * @since 08.10.2018
+ */
+public class Triangle {
+    private Point a;
+    private Point b;
+    private Point c;
+
+    public Triangle(Point a, Point b, Point c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
+
+    /**
+     * Метод вычисления полупериметра по длинам сторон.
+     * <p>
+     * Формула.
+     * <p>
+     * (ab + ac + bc) / 2
+     *
+     * @param ab расстояние между точками a b
+     * @param ac расстояние между точками a c
+     * @param bc расстояние между точками b c
+     * @return полуПеримент.
+     */
+    public double pperimetr(double ab, double ac, double bc) {
+
+        return (ab + ac + bc) / 2;
+    }
+
+    /**
+     * Метод должен вычислить площадь треугольника.
+     * формула Герона s=sqr(p(p-a)(p-b)(p-c)), где  p - полупериметр
+     *
+     * @return Вернуть прощадь, если треугольник существует или -1, если треугольника нет.
+     */
+    public double area() {
+        double rsl = -1; // мы устанавливаем значение -1, так как может быть что треугольника нет. Это значение говорит о том. что треугольника нет.
+        double ab = this.a.distanceTo(this.b);
+        double ac = this.a.distanceTo(this.c);
+        double bc = this.b.distanceTo(this.c);
+        double p = this.pperimetr(ab, ac, bc);
+        if (this.exist(ab, ac, bc)) {
+            rsl = Math.sqrt(p * (p - ab) * (p - ac) * (p - bc));
+        }
+        return rsl;
+    }
+
+    /**
+     * Метод проверяет можно ли построить треугольник с такими длинами сторон.
+     * <p>
+     * Подумайте какое надо написать условие, чтобы определить можно ли построить треугольник.
+     *
+     * @param ab Длина от точки a b.
+     * @param ac Длина от точки a c.
+     * @param bc Длина от точки b c.
+     * @return true or false
+     */
+    private boolean exist(double ab, double ac, double bc) {
+        boolean mayBe = false;
+        if (((ab + ac) > bc) && ((ab + bc) > ac) && ((ac + bc) > ab)) {
+            mayBe = true;
+        }
+        return mayBe;
+    }
+}
+
