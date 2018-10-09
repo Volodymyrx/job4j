@@ -21,13 +21,11 @@ public class PaintMy {
         StringBuilder screen = new StringBuilder();
         String ln = System.lineSeparator();
         int width = h * 2 - 1;
-        int pointTop = h - 1;
-        int pointLeft = pointTop;
-        int pointRight = pointTop;
+        int pointLeft = h - 1;
+        int pointRight = h - 1;
         for (int i = 0; i < h; i++) {
             for (int j = 0; j < width; j++) {
                 // условие проверки, что писать пробел или X
-                // Выше в задании мы определили закономерность, когда нужно проставлять X
                 if ((pointLeft <= j) && (j <= pointRight)) {
                     screen.append("^");
                 } else {
