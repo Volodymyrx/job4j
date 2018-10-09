@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
  * PaintTest
  *
  * @author Volodymyr Martynenko (VolodymyrV.Martynenko@gmail.com)
- * project job4j lesson 5.4
+ * project job4j lesson 5.5
  * @version 1.0
  * @since 09.10.2018
  */
