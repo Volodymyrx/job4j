@@ -1,43 +1,51 @@
 package ru.job4j.loop;
 
 /**
- * Board
- * painting chess board
+ * PaintMy
+ * painting piramid
  *
  * @author Volodymyr Martynenko (VolodymyrV.Martynenko@gmail.com)
- * project job4j lesson 5.3
- * @version 1.1
- * @since 08.10.2018
+ * project job4j lesson 5.4
+ * @version 1.0
+ * @since 09.10.2018
  */
-public class Board {
+
+public class PaintMy {
     /**
-     * method paint chess board
+     * method paint piramid
      *
-     * @param width and height is size of board
-     * @return chess board
+     * @param h height of piramid
+     * @return string with image piramid
      */
-    public String paint(int width, int height) {
+    public String piramid(int h) {
         StringBuilder screen = new StringBuilder();
         String ln = System.lineSeparator();
-        for (int i = 0; i < height; i++) {
+        int width = h * 2 - 1;
+        int pointTop = h - 1;
+        int pointLeft = pointTop;
+        int pointRight = pointTop;
+        for (int i = 0; i < h; i++) {
             for (int j = 0; j < width; j++) {
                 // условие проверки, что писать пробел или X
                 // Выше в задании мы определили закономерность, когда нужно проставлять X
-                if ((i + j) % 2 == 0) {
-                    screen.append("X");
+                if ((pointLeft <= j) && (j <= pointRight)) {
+                    screen.append("^");
                 } else {
                     screen.append(" ");
                 }
             }
+            pointLeft--;
+            pointRight++;
             // добавляем перевод на новую строку.
             screen.append(ln);
         }
         return screen.toString();
     }
+
 ////для визуальной отладки
 //    public static void main(String[] args) {
-//        Board board = new Board();
-//        System.out.println(board.paint(6, 4));
+//        PaintMy paintPiramid= new PaintMy();
+//        System.out.println(paintPiramid.piramid( 4));
 //    }
 
 
