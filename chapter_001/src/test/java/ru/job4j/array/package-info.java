@@ -7,9 +7,10 @@
  * class ArrayChar
  * class BubbleSort
  * class Matrix
+ * class MatrixCheck
  *
  * @author Volodymyr Martynenko (VolodymyrV.Martynenko@gmail.com)
- * project job4j lesson 6.6
+ * project job4j lesson 6.7
  * @version 1.0
  * @since 10.10.2018
  */
