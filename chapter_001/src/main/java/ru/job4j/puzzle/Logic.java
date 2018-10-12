@@ -87,10 +87,13 @@ public class Logic {
                 if ((table[j][i] == 1)) {
                     tempCountVertical++;
                 }
-                if ((tempCountHorizontal == 5) || (tempCountVertical == 5)) {
+                if ((tempCountHorizontal == this.size) || (tempCountVertical == this.size)) {
                     result = true;
                     break;
                 }
+            }
+            if (result) {
+                break;
             }
             tempCountHorizontal = 0;
             tempCountVertical = 0;
