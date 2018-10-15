@@ -3,9 +3,7 @@
  * class Counter
  * class Factorial
  * class Board
- * class BoardMy
  * class Paint
- * class PaintMy
  *
  * @author Volodymyr Martynenko (VolodymyrV.Martynenko@gmail.com)
  * project job4j lesson 5.3

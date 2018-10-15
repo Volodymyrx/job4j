@@ -25,7 +25,6 @@ public class ThirdArraySortedTest {
         assertThat(resutlArray, is(expetArray));
     }
 
-    //TODO  ещё 3 теста, когда первый короче второго, второй пустой и оба пустые.
     @Test
     public void checkIfFirstShorterThenSecondThen() {
         ThirdArraySorted thirdArraySorted = new ThirdArraySorted();

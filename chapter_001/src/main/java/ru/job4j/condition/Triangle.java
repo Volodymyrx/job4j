@@ -32,7 +32,6 @@ public class Triangle {
      * @return полуПеримент.
      */
     public double pperimetr(double ab, double ac, double bc) {
-
         return (ab + ac + bc) / 2;
     }
 

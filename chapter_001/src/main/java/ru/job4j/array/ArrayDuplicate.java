@@ -24,7 +24,6 @@ public class ArrayDuplicate {
             for (int in = out + 1; in < uniqe; in++) {
                 if (array[out].equals(array[in])) {
                     array[in] = array[uniqe - 1];
-
                     uniqe--;
                     in--;
                 }

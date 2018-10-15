@@ -57,8 +57,6 @@ public class Calculator {
         } else {
             this.result = 0;
         }
-
-
     }
 
     /**

@@ -28,7 +28,6 @@ public class Max {
      * @param first second and third any numbers int.
      * @return int number is biggest
      */
-
     public int max(int first, int second, int third) {
         int temp = max(first, second);
         return max(temp, third);

@@ -30,7 +30,6 @@ public class ThirdArraySorted {
         int countFirst = 0;
         int countSecond = 0;
         int countThird = 0;
-
         while (countThird < thirdArray.length) {
             thirdArray[countThird] = firstArray[countFirst] <= secondArray[countSecond] ? firstArray[countFirst++] : secondArray[countSecond++];
             if (countFirst == firstArray.length) {
