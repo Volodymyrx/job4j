@@ -1,6 +1,7 @@
 /**
- * Package for test
- * class Tracker
+ * Package for test project tracker
+ * class TrackerTest
+ * class StartUITest
  *
  * @author Volodymyr Martynenko (VolodymyrV.Martynenko@gmail.com)
  * project job4j lessons of Part 2
