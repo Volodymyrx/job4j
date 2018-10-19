@@ -56,7 +56,6 @@ public class TrackerTest {
         tracker.add(previous2);
         Item next = new Item("1234", "test2", "testDescription2");
         tracker.add(next);
-        tracker.delete(next.getId());
         Item nextnext = new Item("12345", "test2", "testDescription3");
         tracker.add(nextnext);
         tracker.delete(next.getId());

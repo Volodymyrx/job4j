@@ -1,5 +1,7 @@
 package ru.job4j.shape;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -27,11 +29,21 @@ public class PaintTest {
      * выполняем действия пишушиее в консоль.
      * возвращаем обратно стандартный вывод в консоль.
      */
+    final PrintStream stdout = System.out;
+    final ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+    @Before
+    public void loadOutput() {
+        System.setOut(new PrintStream(out));
+    }
+
+    @After
+    public void backOutput() {
+        System.setOut(stdout);
+    }
+
     @Test
     public void whenDrawSquare() {
-        PrintStream stdout = System.out;
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
         StartPaint startPaint = new StartPaint();
         startPaint.go();
         assertThat(new String(out.toByteArray()), is(
@@ -47,6 +59,5 @@ public class PaintTest {
                         + "\r\n"
                 )
         );
-        System.setOut(stdout);
     }
 }
