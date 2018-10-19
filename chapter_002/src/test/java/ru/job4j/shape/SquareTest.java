@@ -2,6 +2,8 @@ package ru.job4j.shape;
 
 import org.junit.Test;
 
+import java.util.StringJoiner;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -20,10 +22,12 @@ public class SquareTest {
     public void whenDrawSquare() {
         Square square = new Square();
         assertThat(square.draw(), is(
-                "sssssss\r\n"
-                        + "sssssss\r\n"
-                        + "sssssss\r\n"
-                        + "sssssss\r\n"
+                new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
+                        .add("sssssss")
+                        .add("sssssss")
+                        .add("sssssss")
+                        .add("sssssss")
+                        .toString()
                 )
         );
     }

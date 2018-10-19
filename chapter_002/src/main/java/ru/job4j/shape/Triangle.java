@@ -12,10 +12,11 @@ public class Triangle implements Shape {
     @Override
     public String draw() {
         StringBuilder pic = new StringBuilder();
-        pic.append("   t   \r\n");
-        pic.append("  ttt  \r\n");
-        pic.append(" ttttt \r\n");
-        pic.append("ttttttt\r\n");
+        String ln = System.lineSeparator();
+        pic.append("   t   " + ln);
+        pic.append("  ttt  " + ln);
+        pic.append(" ttttt " + ln);
+        pic.append("ttttttt" + ln);
         return pic.toString();
     }
 }

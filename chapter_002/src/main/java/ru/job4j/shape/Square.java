@@ -12,10 +12,11 @@ public class Square implements Shape {
     @Override
     public String draw() {
         StringBuilder pic = new StringBuilder();
-        pic.append("sssssss\r\n");
-        pic.append("sssssss\r\n");
-        pic.append("sssssss\r\n");
-        pic.append("sssssss\r\n");
+        String ln = System.lineSeparator();
+        pic.append("sssssss" + ln);
+        pic.append("sssssss" + ln);
+        pic.append("sssssss" + ln);
+        pic.append("sssssss" + ln);
         return pic.toString();
     }
 }

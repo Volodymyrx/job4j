@@ -2,6 +2,8 @@ package ru.job4j.shape;
 
 import org.junit.Test;
 
+import java.util.StringJoiner;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -20,10 +22,12 @@ public class TrianleTest {
     public void whenDrawTriangle() {
         Triangle triangle = new Triangle();
         assertThat(triangle.draw(), is(
-                "   t   \r\n"
-                        + "  ttt  \r\n"
-                        + " ttttt \r\n"
-                        + "ttttttt\r\n"
+                new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
+                        .add("   t   ")
+                        .add("  ttt  ")
+                        .add(" ttttt ")
+                        .add("ttttttt")
+                        .toString()
                 )
         );
     }
