@@ -36,7 +36,7 @@ public class Tracker {
      *
      * @return unick id String
      */
-    private String generateId() {
+    public String generateId() {
         return String.valueOf(System.currentTimeMillis() + RN.nextInt());
     }
 
