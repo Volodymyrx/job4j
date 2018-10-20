@@ -11,19 +11,26 @@ package ru.job4j.shape;
 public class StartPaint {
     public static void main(String[] args) {
         StartPaint startPaint = new StartPaint();
-        startPaint.go();
+        Paint paint = new Paint();
+        startPaint.consoleTriangle(paint);
+        startPaint.consoleSquere(paint);
     }
 
     /**
-     * method go for print in console String
+     * method go for print in console String Triangle
+     *
+     * @param paint using any shape
      */
-    void go() {
-        Paint paint = new Paint();
+    void consoleTriangle(Paint paint) {
+        System.out.println(paint.paintShape(new Triangle()));
+    }
 
-        paint.setShape(new Triangle());
-        System.out.println(paint.paintShape());
-
-        paint.setShape(new Square());
-        System.out.println(paint.paintShape());
+    /**
+     * method go for print in console String Square
+     *
+     * @param paint using any shape
+     */
+    void consoleSquere(Paint paint) {
+        System.out.println(paint.paintShape(new Square()));
     }
 }

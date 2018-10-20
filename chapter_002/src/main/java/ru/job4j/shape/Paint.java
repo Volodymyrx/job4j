@@ -5,24 +5,17 @@ package ru.job4j.shape;
  *
  * @author Volodymyr Martynenko (VolodymyrV.Martynenko@gmail.com)
  * project job4j lesson 4.4
- * @version 1.0
- * @since 19.10.2018
+ * @version 1.2
+ * @since 20.10.2018
  */
 public class Paint {
-    private Shape shape;
-
-    /*setter*/
-    public void setShape(Shape shape) {
-        this.shape = shape;
-    }
-
     /**
      * method
      *
+     * @param shape any shape Triangle or Square
      * @return string with paint shape
      */
-    public String paintShape() {
+    public String paintShape(Shape shape) {
         return shape.draw();
     }
-
 }

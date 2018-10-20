@@ -17,8 +17,8 @@ import java.lang.*;
  *
  * @author Volodymyr Martynenko (VolodymyrV.Martynenko@gmail.com)
  * project job4j lesson 4.4
- * @version 1.0
- * @since 19.10.2018
+ * @version 1.2
+ * @since 20.10.2018
  */
 public class PaintTest {
 
@@ -31,6 +31,8 @@ public class PaintTest {
      */
     final PrintStream stdout = System.out;
     final ByteArrayOutputStream out = new ByteArrayOutputStream();
+    private final String ln = System.lineSeparator();
+    StartPaint startPaint = new StartPaint();
 
     @Before
     public void loadOutput() {
@@ -43,21 +45,29 @@ public class PaintTest {
     }
 
     @Test
-    public void whenDrawSquare() {
-        StartPaint startPaint = new StartPaint();
-        startPaint.go();
+    public void whenDrawTriangle() {
+        startPaint.consoleTriangle(new Paint());
         assertThat(new String(out.toByteArray()), is(
-                "   t   \r\n"
-                        + "  ttt  \r\n"
-                        + " ttttt \r\n"
-                        + "ttttttt\r\n"
-                        + "\r\n"
-                        + "sssssss\r\n"
-                        + "sssssss\r\n"
-                        + "sssssss\r\n"
-                        + "sssssss\r\n"
-                        + "\r\n"
+                "   t   " + ln
+                        + "  ttt  " + ln
+                        + " ttttt " + ln
+                        + "ttttttt" + ln
+                        + ln
                 )
         );
     }
+
+    @Test
+    public void whenDrawSquare() {
+        startPaint.consoleSquere(new Paint());
+        assertThat(new String(out.toByteArray()), is(
+                "sssssss" + ln
+                        + "sssssss" + ln
+                        + "sssssss" + ln
+                        + "sssssss" + ln
+                        + ln
+                )
+        );
+    }
+
 }
