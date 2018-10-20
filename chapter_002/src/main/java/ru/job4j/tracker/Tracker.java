@@ -18,6 +18,11 @@ public class Tracker {
     private int position = 0;
     private static final Random RN = new Random();
 
+    /*getter for items*/
+    public Item[] getItems() {
+        return this.items;
+    }
+
     /**
      * method add - add unic id in item and add in array
      * Метод реализаущий добавление заявки в хранилище
@@ -36,7 +41,7 @@ public class Tracker {
      *
      * @return unick id String
      */
-    public String generateId() {
+    private String generateId() {
         return String.valueOf(System.currentTimeMillis() + RN.nextInt());
     }
 
