@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import java.util.Scanner;
+
 /**
  * ConsoleInput
  * part of project tracker

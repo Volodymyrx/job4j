@@ -32,7 +32,7 @@ public class PaintTest {
     final PrintStream stdout = System.out;
     final ByteArrayOutputStream out = new ByteArrayOutputStream();
     private final String ln = System.lineSeparator();
-    StartPaint startPaint = new StartPaint();
+
 
     @Before
     public void loadOutput() {
@@ -46,6 +46,7 @@ public class PaintTest {
 
     @Test
     public void whenDrawTriangle() {
+        StartPaint startPaint = new StartPaint();
         startPaint.consoleTriangle(new Paint());
         assertThat(new String(out.toByteArray()), is(
                 "   t   " + ln
@@ -59,6 +60,7 @@ public class PaintTest {
 
     @Test
     public void whenDrawSquare() {
+        StartPaint startPaint = new StartPaint();
         startPaint.consoleSquere(new Paint());
         assertThat(new String(out.toByteArray()), is(
                 "sssssss" + ln
