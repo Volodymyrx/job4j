@@ -10,8 +10,6 @@ package ru.job4j.tracker;
  * @since 22.10.2018
  */
 public interface UserAction {
-
-
     /**
      * Метод возвращает ключ опции.
      *
@@ -21,11 +19,9 @@ public interface UserAction {
 
     /**
      * Основной метод.
-     *
-     * @param input   объект типа Input
-     * @param tracker объект типа Tracker
+     * убрал параметры input and tracker за ненадобностью
      */
-    void execute(Input input, Tracker tracker);
+    void execute();
 
     /**
      * Метод возвращает информацию о данном пункте меню.
