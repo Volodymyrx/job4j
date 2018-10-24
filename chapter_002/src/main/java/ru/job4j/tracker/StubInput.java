@@ -40,5 +40,19 @@ public class StubInput implements Input {
     public String ask(String question) {
         return answers[position++];
     }
+
+    /**
+     * method ask - для тестов имулирует ввод с консоли
+     *
+     * @param question - question for user - don't use
+     * @param range    - don't use
+     * @return next part of string array answer
+     */
+    @Override
+    public int ask(String question, int[] range) {
+        return Integer.valueOf(answers[position++]);
+    }
+
+
 }
 

@@ -34,7 +34,7 @@ public class StartUI {
      * @param args - nothing
      */
     public static void main(String[] args) {
-        new StartUI(new ConsoleInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(), new Tracker()).init();
     }
 
     /**
@@ -44,12 +44,14 @@ public class StartUI {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
         List<Integer> range = new ArrayList<>();
         menu.fillActions();
+        int[] numberAnswer = new int[menu.getActionsLentgh()];
         for (int i = 0; i < menu.getActionsLentgh(); i++) {
             range.add(i);
+            numberAnswer[i] = i;
         }
         do {
             menu.show();
-            menu.select(Integer.valueOf(input.ask(range.toString())));
+            menu.select(input.ask(range.toString(), numberAnswer));
         } while (menu.isStay());
     }
 }

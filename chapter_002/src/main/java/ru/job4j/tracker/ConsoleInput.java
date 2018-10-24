@@ -19,9 +19,32 @@ public class ConsoleInput implements Input {
      *
      * @param question - question fок user
      */
+    @Override
     public String ask(String question) {
         System.out.println(question);
         return scanner.nextLine();
     }
 
+    /**
+     * method ask - возвращает ввод с сонсоли
+     *
+     * @param question - question fок user
+     * @param range    - int of user
+     */
+    @Override
+    public int ask(String question, int[] range) {
+        int key = Integer.valueOf(this.ask(question));
+        boolean exist = false;
+        for (int i : range) {
+            if (i == key) {
+                exist = true;
+                break;
+            }
+        }
+        if (exist) {
+            return key;
+        } else {
+            throw new MenuOutException("Out of menu range. ");
+        }
+    }
 }
