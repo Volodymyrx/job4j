@@ -14,7 +14,6 @@ import java.util.List;
  */
 public class StartUI {
 
-    static boolean stay = true;
     private final Input input;
     private final Tracker tracker;
 
@@ -51,6 +50,6 @@ public class StartUI {
         do {
             menu.show();
             menu.select(Integer.valueOf(input.ask(range.toString())));
-        } while (stay);
+        } while (menu.isStay());
     }
 }

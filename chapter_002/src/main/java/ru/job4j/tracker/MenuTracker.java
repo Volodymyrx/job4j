@@ -27,6 +27,20 @@ public class MenuTracker {
     private List<UserAction> actions = new ArrayList<>();
 
     /**
+     * temp parametr for Exit
+     */
+    private boolean stay = true;
+
+    /**
+     * getter for boolean stay
+     *
+     * @return stay boolean
+     */
+    public boolean isStay() {
+        return stay;
+    }
+
+    /**
      * Конструктор.
      *
      * @param input   объект типа Input
@@ -262,7 +276,7 @@ public class MenuTracker {
          */
         @Override
         public void execute() {
-            StartUI.stay = !("y".equals(input.ask("Do you realy want ot Exit? (y/n):  ")));
+            stay = !("y".equals(input.ask("Do you realy want ot Exit? (y/n):  ")));
         }
 
         @Override
