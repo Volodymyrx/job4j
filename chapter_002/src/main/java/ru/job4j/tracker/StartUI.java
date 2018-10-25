@@ -44,14 +44,12 @@ public class StartUI {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
         List<Integer> range = new ArrayList<>();
         menu.fillActions();
-        int[] numberAnswer = new int[menu.getActionsLentgh()];
         for (int i = 0; i < menu.getActionsLentgh(); i++) {
             range.add(i);
-            numberAnswer[i] = i;
         }
         do {
             menu.show();
-            menu.select(input.ask(range.toString(), numberAnswer));
+            menu.select(input.ask(range.toString(), menu.getNumberAnswer()));
         } while (menu.isStay());
     }
 }

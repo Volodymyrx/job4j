@@ -32,6 +32,17 @@ public class MenuTracker {
     private boolean stay = true;
 
     /**
+     * загрузка списка номеров действий
+     */
+    public int[] getNumberAnswer() {
+        int[] numberAnswer = new int[this.actions.size()];
+        for (int i = 0; i < this.actions.size(); i++) {
+            numberAnswer[i] = i;
+        }
+        return numberAnswer;
+    }
+
+    /**
      * getter for boolean stay
      *
      * @return stay boolean
