@@ -30,16 +30,16 @@ public class MenuTracker {
      * temp parametr for Exit
      */
     private boolean stay = true;
+    /**
+     * array списка номеров действий
+     */
+    private int[] numberAnswer;
 
     /**
      * загрузка списка номеров действий
      */
     public int[] getNumberAnswer() {
-        int[] numberAnswer = new int[this.actions.size()];
-        for (int i = 0; i < this.actions.size(); i++) {
-            numberAnswer[i] = i;
-        }
-        return numberAnswer;
+        return this.numberAnswer;
     }
 
     /**
@@ -72,7 +72,8 @@ public class MenuTracker {
     }
 
     /**
-     * Метод заполняет массив.
+     * Метод заполняет массив действий
+     * загрузка массива списка номеров действий
      */
     public void fillActions() {
         this.actions.add(new AddItem(0, "Add new Item"));
@@ -82,6 +83,10 @@ public class MenuTracker {
         this.actions.add(new FindItemById(4, "Find item by Id"));
         this.actions.add(new FindItemsByName(5, "Find items by name"));
         this.actions.add(new ExitProgram(6, "Exit Program"));
+        this.numberAnswer = new int[this.actions.size()];
+        for (int i = 0; i < this.actions.size(); i++) {
+            this.numberAnswer[i] = i;
+        }
     }
 
     /**

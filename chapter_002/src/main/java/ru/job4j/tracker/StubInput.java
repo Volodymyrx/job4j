@@ -40,31 +40,5 @@ public class StubInput implements Input {
     public String ask(String question) {
         return answers[position++];
     }
-
-    /**
-     * method ask - для тестов имулирует ввод с консоли
-     *
-     * @param question - question for user - don't use
-     * @param range    - don't use
-     * @return next part of string array answer
-     */
-    @Override
-    public int ask(String question, int[] range) {
-        int key = Integer.valueOf(this.ask(question));
-        boolean exist = false;
-        for (int i : range) {
-            if (i == key) {
-                exist = true;
-                break;
-            }
-        }
-        if (exist) {
-            return key;
-        } else {
-            throw new MenuOutException("Out of menu range. ");
-        }
-    }
-
-
 }
 
