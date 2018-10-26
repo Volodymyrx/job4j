@@ -1,6 +1,7 @@
 /**
  * Package for task-tracker
  * Action
+ * BaseAction abstract class
  * ConsoleInput
  * Input - interface
  * UserAction - interface

@@ -114,18 +114,10 @@ public class MenuTracker {
     /**
      * AddItem  -запрашивает все параметры и добавляет заявку
      */
-    public class AddItem implements UserAction {
-        private final int key;
-        private final String name;
+    public class AddItem extends BaseAction {
 
         public AddItem(int key, String name) {
-            this.key = key;
-            this.name = name;
-        }
-
-        @Override
-        public int key() {
-            return 0;
+            super(key, name);
         }
 
         /**
@@ -140,28 +132,14 @@ public class MenuTracker {
             tracker.add(item);
             System.out.println("------------ Новая заявка с getId  " + item.getId() + "  принята -----------");
         }
-
-        @Override
-        public String info() {
-            return String.format("%d. %s", this.key, this.name);
-        }
     }
 
     /**
      * ShowItems выводит на консоль все имеющиеся заявки
      */
-    public class ShowItems implements UserAction {
-        private final int key;
-        private final String name;
-
+    public class ShowItems extends BaseAction {
         public ShowItems(int key, String name) {
-            this.key = key;
-            this.name = name;
-        }
-
-        @Override
-        public int key() {
-            return 1;
+            super(key, name);
         }
 
         /**
@@ -181,28 +159,15 @@ public class MenuTracker {
             System.out.println("===============================================================");
             System.out.println();
         }
-
-        @Override
-        public String info() {
-            return String.format("%d. %s", this.key, this.name);
-        }
     }
 
     /**
      * FindItemById запрашивает id выводит на консоль найденую заявку
      */
-    public class FindItemById implements UserAction {
-        private final int key;
-        private final String name;
+    public class FindItemById extends BaseAction {
 
         public FindItemById(int key, String name) {
-            this.key = key;
-            this.name = name;
-        }
-
-        @Override
-        public int key() {
-            return 4;
+            super(key, name);
         }
 
         /**
@@ -220,28 +185,15 @@ public class MenuTracker {
             System.out.println("===============================================================");
             System.out.println();
         }
-
-        @Override
-        public String info() {
-            return String.format("%d. %s", this.key, this.name);
-        }
     }
 
     /**
      * FindItemByName запрашивает имя и выводит на консоль все найденые заявки
      */
-    public class FindItemsByName implements UserAction {
-        private final int key;
-        private final String name;
+    public class FindItemsByName extends BaseAction {
 
         public FindItemsByName(int key, String name) {
-            this.key = key;
-            this.name = name;
-        }
-
-        @Override
-        public int key() {
-            return 5;
+            super(key, name);
         }
 
         /**
@@ -263,28 +215,15 @@ public class MenuTracker {
             System.out.println("===============================================================");
             System.out.println();
         }
-
-        @Override
-        public String info() {
-            return String.format("%d. %s", this.key, this.name);
-        }
     }
 
     /**
      * ExitProgram запрашивает подтверждение на выход из программы
      */
-    public class ExitProgram implements UserAction {
-        private final int key;
-        private final String name;
+    public class ExitProgram extends BaseAction {
 
         public ExitProgram(int key, String name) {
-            this.key = key;
-            this.name = name;
-        }
-
-        @Override
-        public int key() {
-            return 6;
+            super(key, name);
         }
 
         /**
@@ -294,28 +233,15 @@ public class MenuTracker {
         public void execute() {
             stay = !("y".equals(input.ask("Do you realy want ot Exit? (y/n):  ")));
         }
-
-        @Override
-        public String info() {
-            return String.format("%d. %s", this.key, this.name);
-        }
     }
 
     /**
      * EditItem запрашивает данные и изменяет заявку
      */
-    public class EditItem implements UserAction {
-        private final int key;
-        private final String name;
+    public class EditItem extends BaseAction {
 
         public EditItem(int key, String name) {
-            this.key = key;
-            this.name = name;
-        }
-
-        @Override
-        public int key() {
-            return 2;
+            super(key, name);
         }
 
         /**
@@ -332,28 +258,15 @@ public class MenuTracker {
             tracker.replace(id, item);
             System.out.println("------------ Обновление заявки  с id  " + item.getId() + "  выполненно -----------");
         }
-
-        @Override
-        public String info() {
-            return String.format("%d. %s", this.key, this.name);
-        }
     }
 
     /**
      * DeleteItem - запрашивает данные и удаляет заявку по id
      */
-    public class DeleteItem implements UserAction {
-        private final int key;
-        private final String name;
+    public class DeleteItem extends BaseAction {
 
         public DeleteItem(int key, String name) {
-            this.key = key;
-            this.name = name;
-        }
-
-        @Override
-        public int key() {
-            return this.key;
+            super(key, name);
         }
 
         /**
@@ -366,12 +279,5 @@ public class MenuTracker {
             tracker.delete(id);
             System.out.println("------------ Заявка с id " + id + " удалена -----------");
         }
-
-        @Override
-        public String info() {
-            return String.format("%d. %s", this.key, this.name);
-        }
     }
-
-
 }
