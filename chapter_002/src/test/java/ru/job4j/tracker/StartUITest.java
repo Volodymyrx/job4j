@@ -15,8 +15,8 @@ import static org.junit.Assert.assertThat;
  *
  * @author Volodymyr Martynenko (VolodymyrV.Martynenko@gmail.com)
  * project job4j lesson 5.2
- * @version 1.3
- * @since 22.10.2018
+ * @version 1.4
+ * @since 27.10.2018
  */
 public class StartUITest {
     final PrintStream stdout = System.out;
@@ -53,19 +53,19 @@ public class StartUITest {
         new StartUI(input, tracker).init();
         assertThat(new String(out.toByteArray()), is(
                 menu
-                        + "-------- List of all Items -------------------------" + ln
-                        + " № по порядку 1 id: " + tracker.getItems()[0].getId() + ln
+                        + "_______________ List of all Items _______________" + ln
+                        + "  № по порядку 1 id: " + tracker.getItems()[0].getId() + ln
                         + " Name test name0" + ln
                         + " Содержание: desc0" + ln
-                        + "---------------------------------------------------------" + ln
+                        + "__________________________________________________" + ln
                         + " № по порядку 2 id: " + tracker.getItems()[1].getId() + ln
                         + " Name test name1" + ln
                         + " Содержание: desc1" + ln
-                        + "---------------------------------------------------------" + ln
+                        + "__________________________________________________" + ln
                         + " № по порядку 3 id: " + tracker.getItems()[2].getId() + ln
                         + " Name test name1" + ln
-                        + " Содержание: desc2\r\n---------------------------------------------------------" + ln
-                        + "===============================================================" + ln + ln
+                        + " Содержание: desc2\r\n__________________________________________________" + ln
+                        + "==================================================" + ln + ln
                         + menu
                 )
         );
@@ -81,12 +81,30 @@ public class StartUITest {
         new StartUI(input, tracker).init();
         assertThat(new String(out.toByteArray()), is(
                 menu
-                        + "------------ Поиск заявки по id --------------" + ln
+                        + "_______________ Поиск заявки по id _______________" + ln
                         + " id: " + tracker.getItems()[1].getId() + ln
                         + " Name test name1" + ln
                         + " Содержание: desc1" + ln
-                        + "---------------------------------------------------------" + ln
-                        + "===============================================================" + ln + ln
+                        + "__________________________________________________" + ln
+                        + "==================================================" + ln + ln
+                        + menu
+                )
+        );
+    }
+
+    @Test
+    public void whenFindeByIdWithBadIdThenPrintMessage() {
+        Tracker tracker = new Tracker();
+        tracker.add(new Item("test name0", "desc0"));
+        tracker.add(new Item("test name1", "desc1"));
+        tracker.add(new Item("test name1", "desc2"));
+        Input input = new StubInput(new String[]{"4", "555", "6", "y"});
+        new StartUI(input, tracker).init();
+        assertThat(new String(out.toByteArray()), is(
+                menu
+                        + "_______________ Поиск заявки по id _______________" + ln
+                        + " Item whith id 555 is not found." + ln
+                        + "==================================================" + ln + ln
                         + menu
                 )
         );
@@ -102,13 +120,13 @@ public class StartUITest {
         new StartUI(input, tracker).init();
         assertThat(new String(out.toByteArray()), is(
                 menu
-                        + "------------ Поиск заявки по name --------------" + ln
-                        + "-------- List  Items by Name -------------------------" + ln
-                        + " № по порядку 1 id: " + tracker.getItems()[0].getId() + ln
+                        + "_______________ Поиск заявки по name _______________" + ln
+                        + " _______________ List  Items by Name _______________" + ln
+                        + "  № по порядку 1 id: " + tracker.getItems()[0].getId() + ln
                         + " Name test name0" + ln
                         + " Содержание: desc0" + ln
-                        + "---------------------------------------------------------" + ln
-                        + "===============================================================" + ln + ln
+                        + "__________________________________________________" + ln
+                        + "==================================================" + ln + ln
                         + menu
                 )
         );
@@ -124,16 +142,16 @@ public class StartUITest {
         new StartUI(input, tracker).init();
         assertThat(new String(out.toByteArray()), is(
                 menu
-                        + "------------ Поиск заявки по name --------------" + ln
-                        + "-------- List  Items by Name -------------------------" + ln
-                        + " № по порядку 1 id: " + tracker.getItems()[1].getId() + ln
+                        + "_______________ Поиск заявки по name _______________" + ln
+                        + " _______________ List  Items by Name _______________" + ln
+                        + "  № по порядку 1 id: " + tracker.getItems()[1].getId() + ln
                         + " Name test name1" + ln
                         + " Содержание: desc1" + ln
-                        + "---------------------------------------------------------" + ln
+                        + "__________________________________________________" + ln
                         + " № по порядку 2 id: " + tracker.getItems()[2].getId() + ln
                         + " Name test name1" + ln
-                        + " Содержание: desc2\r\n---------------------------------------------------------" + ln
-                        + "===============================================================" + ln + ln
+                        + " Содержание: desc2\r\n__________________________________________________" + ln
+                        + "==================================================" + ln + ln
                         + menu
                 )
         );
@@ -154,9 +172,9 @@ public class StartUITest {
         new StartUI(input, tracker).init();
         assertThat(new String(out.toByteArray()), is(
                 menu
-                        + "------------ Добавление новой заявки --------------" + ln
-                        + "------------ Новая заявка с getId  " + tracker.getItems()[0].getId() + "  принята -----------" + ln
-                        + menu
+                        + "_______________ Добавление новой заявки _______________" + ln
+                        + " _______________ Новая заявка с getId  " + tracker.getItems()[0].getId() + "  принята _______________" + ln
+                        + " " + menu
                 )
         );
     }
@@ -178,8 +196,24 @@ public class StartUITest {
         new StartUI(input, tracker).init();
         assertThat(new String(out.toByteArray()), is(
                 menu
-                        + "------------ Изменение  заявки --------------" + ln
-                        + "------------ Обновление заявки  с id  " + tracker.getItems()[0].getId() + "  выполненно -----------" + ln
+                        + "_______________ Изменение  заявки _______________" + ln
+                        + " _______________ Обновление заявки  с id  " + tracker.getItems()[0].getId() + "  выполненно _______________" + ln
+                        + " " + menu
+                )
+        );
+    }
+
+    @Test
+    public void whenUpdateWithBadIdThenMessage() {
+        Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("test name", "desc"));
+        Input input = new StubInput(new String[]{"2", "555", "6", "y"});
+        new StartUI(input, tracker).init();
+        assertThat(new String(out.toByteArray()), is(
+                menu
+                        + "_______________ Изменение  заявки _______________" + ln
+                        + " Item whith id 555 is not found." + ln
+                        + "==================================================" + ln + ln
                         + menu
                 )
         );
@@ -204,8 +238,25 @@ public class StartUITest {
         new StartUI(input, tracker).init();
         assertThat(new String(out.toByteArray()), is(
                 menu
-                        + "------------ Удаление  заявки --------------" + ln
-                        + "------------ Заявка с id " + item0.getId() + " удалена -----------" + ln
+                        + "_______________ Удаление  заявки _______________" + ln
+                        + " _______________ Заявка с id " + item0.getId() + " удалена _______________" + ln
+                        + " " + menu
+                )
+        );
+    }
+
+    @Test
+    public void whenDeleteBadIdThenMessage() {
+        Tracker tracker = new Tracker();
+        Item item0 = tracker.add(new Item("test name0", "desc0"));
+        tracker.add(new Item("test name1", "desc1"));
+        Input input = new StubInput(new String[]{"3", "555", "6", "y"});
+        new StartUI(input, tracker).init();
+        assertThat(new String(out.toByteArray()), is(
+                menu
+                        + "_______________ Удаление  заявки _______________" + ln
+                        + " Item whith id 555 is not found." + ln
+                        + "==================================================" + ln + ln
                         + menu
                 )
         );

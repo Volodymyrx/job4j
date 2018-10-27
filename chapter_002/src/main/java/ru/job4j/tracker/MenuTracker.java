@@ -25,7 +25,10 @@ public class MenuTracker {
      * хранит ссылку на массив типа UserAction.
      */
     private List<UserAction> actions = new ArrayList<>();
-
+    /**
+     * хранит  массив c номерами UserAction.
+     */
+    private List<Integer> range = new ArrayList<>();
     /**
      * temp parametr for Exit
      */
@@ -36,10 +39,25 @@ public class MenuTracker {
     private int[] numberAnswer;
 
     /**
-     * загрузка списка номеров действий
+     * string for GUI
+     */
+    private final String lineShort = String.format("%0" + 15 + "d", 0).replace("0", "_");
+    private final String lineLong = String.format("%0" + 50 + "d", 0).replace("0", "_");
+    private final String lineLongDouble = String.format("%0" + 50 + "d", 0).replace("0", "=");
+
+
+    /**
+     * getter списка номеров действий
      */
     public int[] getNumberAnswer() {
         return this.numberAnswer;
+    }
+
+    /**
+     * getter array списка номеров действий
+     */
+    public List<Integer> getRange() {
+        return range;
     }
 
     /**
@@ -63,15 +81,6 @@ public class MenuTracker {
     }
 
     /**
-     * Метод для получения массива меню.
-     *
-     * @return длину массива
-     */
-    public int getActionsLentgh() {
-        return this.actions.size();
-    }
-
-    /**
      * Метод заполняет массив действий
      * загрузка массива списка номеров действий
      */
@@ -85,6 +94,7 @@ public class MenuTracker {
         this.actions.add(new ExitProgram(6, "Exit Program"));
         this.numberAnswer = new int[this.actions.size()];
         for (int i = 0; i < this.actions.size(); i++) {
+            this.range.add(i);
             this.numberAnswer[i] = i;
         }
     }
@@ -112,6 +122,32 @@ public class MenuTracker {
     }
 
     /**
+     * Метод выводит на экран строку слева и справа прочерки
+     *
+     * @param title -title string
+     */
+    private void printTitle(String title) {
+        System.out.printf("%s %s %s%n ", lineShort, title, lineShort);
+    }
+
+    /**
+     * Метод проверяет есть ли заявка с таким id
+     *
+     * @param id - id of item
+     * @return true if is
+     */
+    private boolean isId(String id) {
+        boolean result = false;
+        for (Item item : tracker.getItems()) {
+            if ((item != null) && (id.equals(item.getId()))) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+
+    /**
      * AddItem  -запрашивает все параметры и добавляет заявку
      */
     public class AddItem extends BaseAction {
@@ -125,12 +161,12 @@ public class MenuTracker {
          */
         @Override
         public void execute() {
-            System.out.println("------------ Добавление новой заявки --------------");
+            printTitle("Добавление новой заявки");
             String name = input.ask("Введите имя заявки ");
             String desc = input.ask("Введите описание заявки ");
             Item item = new Item(name, desc);
             tracker.add(item);
-            System.out.println("------------ Новая заявка с getId  " + item.getId() + "  принята -----------");
+            printTitle("Новая заявка с getId  " + item.getId() + "  принята");
         }
     }
 
@@ -147,17 +183,14 @@ public class MenuTracker {
          */
         @Override
         public void execute() {
-            System.out.println("-------- List of all Items -------------------------");
+            printTitle("List of all Items");
             Item[] allItem = tracker.findAll();
             int count = 0;
             for (Item item : allItem) {
-                System.out.println(" № по порядку " + (++count) + " id: " + item.getId());
-                System.out.println(" Name " + item.getName());
-                System.out.println(" Содержание: " + item.getDesctiption());
-                System.out.println("---------------------------------------------------------");
+                System.out.printf(" № по порядку %d id: %s%n Name %s%n Содержание: %s%n%s%n",
+                        ++count, item.getId(), item.getName(), item.getDesctiption(), lineLong);
             }
-            System.out.println("===============================================================");
-            System.out.println();
+            System.out.printf("%s%n%n", lineLongDouble);
         }
     }
 
@@ -175,15 +208,16 @@ public class MenuTracker {
          */
         @Override
         public void execute() {
-            System.out.println("------------ Поиск заявки по id --------------");
+            printTitle("Поиск заявки по id");
             String id = input.ask("Введите id  заявки которую нужно найти ");
-            Item foundItemId = tracker.findById(id);
-            System.out.println(" id: " + foundItemId.getId());
-            System.out.println(" Name " + foundItemId.getName());
-            System.out.println(" Содержание: " + foundItemId.getDesctiption());
-            System.out.println("---------------------------------------------------------");
-            System.out.println("===============================================================");
-            System.out.println();
+            if (isId(id)) {
+                Item foundItemId = tracker.findById(id);
+                System.out.printf("id: %s%n Name %s%n Содержание: %s%n%s%n",
+                        foundItemId.getId(), foundItemId.getName(), foundItemId.getDesctiption(), lineLong);
+                System.out.printf("%s%n%n", lineLongDouble);
+            } else {
+                System.out.printf("Item whith id %s is not found.%n%s%n%n", id, lineLongDouble);
+            }
         }
     }
 
@@ -201,19 +235,16 @@ public class MenuTracker {
          */
         @Override
         public void execute() {
-            System.out.println("------------ Поиск заявки по name --------------");
+            printTitle("Поиск заявки по name");
             String name = input.ask("Введите name  заявки которую нужно найти ");
-            System.out.println("-------- List  Items by Name -------------------------");
+            printTitle("List  Items by Name");
             Item[] allItem = tracker.findByName(name);
             int count = 0;
             for (Item item : allItem) {
-                System.out.println(" № по порядку " + (++count) + " id: " + item.getId());
-                System.out.println(" Name " + item.getName());
-                System.out.println(" Содержание: " + item.getDesctiption());
-                System.out.println("---------------------------------------------------------");
+                System.out.printf(" № по порядку %d id: %s%n Name %s%n Содержание: %s%n%s%n",
+                        ++count, item.getId(), item.getName(), item.getDesctiption(), lineLong);
             }
-            System.out.println("===============================================================");
-            System.out.println();
+            System.out.printf("%s%n%n", lineLongDouble);
         }
     }
 
@@ -249,14 +280,17 @@ public class MenuTracker {
          */
         @Override
         public void execute() {
-            System.out.println("------------ Изменение  заявки --------------");
+            printTitle("Изменение  заявки");
             String id = input.ask("Введите id  заявки которую нужно изменить ");
-
-            String name = input.ask("Введите новое имя заявки ");
-            String desc = input.ask("Введите новое описание заявки ");
-            Item item = new Item(name, desc);
-            tracker.replace(id, item);
-            System.out.println("------------ Обновление заявки  с id  " + item.getId() + "  выполненно -----------");
+            if (isId(id)) {
+                String name = input.ask("Введите новое имя заявки ");
+                String desc = input.ask("Введите новое описание заявки ");
+                Item item = new Item(name, desc);
+                tracker.replace(id, item);
+                printTitle("Обновление заявки  с id  " + item.getId() + "  выполненно");
+            } else {
+                System.out.printf("Item whith id %s is not found.%n%s%n%n", id, lineLongDouble);
+            }
         }
     }
 
@@ -274,10 +308,14 @@ public class MenuTracker {
          */
         @Override
         public void execute() {
-            System.out.println("------------ Удаление  заявки --------------");
+            printTitle("Удаление  заявки");
             String id = input.ask("Введите id  заявки которую нужно удалить ");
-            tracker.delete(id);
-            System.out.println("------------ Заявка с id " + id + " удалена -----------");
+            if (isId(id)) {
+                tracker.delete(id);
+                printTitle("Заявка с id " + id + " удалена");
+            } else {
+                System.out.printf("Item whith id %s is not found.%n%s%n%n", id, lineLongDouble);
+            }
         }
     }
 }

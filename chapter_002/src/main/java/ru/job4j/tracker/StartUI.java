@@ -1,16 +1,13 @@
 package ru.job4j.tracker;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * StartUI- start file
  * part of project tracker
  *
  * @author Volodymyr Martynenko (VolodymyrV.Martynenko@gmail.com)
  * project job4j lesson 2.2
- * @version 1.0
- * @since 17.10.2018
+ * @version 1.2
+ * @since 27.10.2018
  */
 public class StartUI {
 
@@ -42,14 +39,10 @@ public class StartUI {
      */
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
-        List<Integer> range = new ArrayList<>();
         menu.fillActions();
-        for (int i = 0; i < menu.getActionsLentgh(); i++) {
-            range.add(i);
-        }
         do {
             menu.show();
-            menu.select(input.ask(range.toString(), menu.getNumberAnswer()));
+            menu.select(input.ask(menu.getRange().toString(), menu.getNumberAnswer()));
         } while (menu.isStay());
     }
 }
