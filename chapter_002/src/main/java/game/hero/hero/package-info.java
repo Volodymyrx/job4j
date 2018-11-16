@@ -1,5 +1,5 @@
 /**
- * Package for test project Game Hero folder Hero
+ * Package for project Game Hero folder Hero
  * interface Hero
  * class HeroBase
  * class HeroHunter

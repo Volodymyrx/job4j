@@ -1,11 +1,9 @@
 /**
- * Package for project Game Hero folder Team
- * interface Teame
- * class TeameBase
- * class TeameElf
- * class TeameHuman
- * class TeameNejid
- * class TeameOrk
+ * Package for test project Game Hero
+ * class TeameElfTest
+ * class TeameHumanTest
+ * class TeameNejidTest
+ * class TeameOrkTest
  *
  * @author Volodymyr Martynenko (VolodymyrV.Martynenko@gmail.com)
  * project job4j plus

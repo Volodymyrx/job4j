@@ -1,5 +1,5 @@
 /**
- * Package for project Game Hero
+ * Package for test project Game Hero
  * class Start
  * class Battle
  *
