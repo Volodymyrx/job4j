@@ -22,7 +22,6 @@ public class PriorityQueue {
      * @param task задача
      */
     public void put(Task task) {
-
         if (this.tasks.size() == 0) {
             this.tasks.add(task);
         } else {
@@ -35,6 +34,11 @@ public class PriorityQueue {
             }
             this.tasks.add(index, task);
         }
+    }
+
+    public void put2(Task task) {
+        this.tasks.add(task);
+        this.tasks.sort(Task::compareTo);
     }
 
     public Task take() {
