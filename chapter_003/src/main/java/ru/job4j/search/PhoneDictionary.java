@@ -33,10 +33,10 @@ public class PhoneDictionary {
     public List<Person> find(String key) {
         List<Person> result = new ArrayList();
         for (Person listPerson : listPersons) {
-            if (listPerson.getName().contains(key) ||
-                    listPerson.getSurname().contains(key) ||
-                    listPerson.getPhone().contains(key) ||
-                    listPerson.getAddress().contains(key)) {
+            if (listPerson.getName().contains(key)
+                    || listPerson.getSurname().contains(key)
+                    || listPerson.getPhone().contains(key)
+                    || listPerson.getAddress().contains(key)) {
                 result.add(listPerson);
             }
         }
