@@ -54,15 +54,15 @@ public class StartUITest {
         assertThat(new String(out.toByteArray()), is(
                 menu
                         + "_______________ List of all Items _______________" + ln
-                        + "  № по порядку 1 id: " + tracker.getItems()[0].getId() + ln
+                        + "  № по порядку 1 id: " + tracker.getItems().get(0).getId() + ln
                         + " Name test name0" + ln
                         + " Содержание: desc0" + ln
                         + "__________________________________________________" + ln
-                        + " № по порядку 2 id: " + tracker.getItems()[1].getId() + ln
+                        + " № по порядку 2 id: " + tracker.getItems().get(1).getId() + ln
                         + " Name test name1" + ln
                         + " Содержание: desc1" + ln
                         + "__________________________________________________" + ln
-                        + " № по порядку 3 id: " + tracker.getItems()[2].getId() + ln
+                        + " № по порядку 3 id: " + tracker.getItems().get(2).getId() + ln
                         + " Name test name1" + ln
                         + " Содержание: desc2\r\n__________________________________________________" + ln
                         + "==================================================" + ln + ln
@@ -77,12 +77,12 @@ public class StartUITest {
         tracker.add(new Item("test name0", "desc0"));
         tracker.add(new Item("test name1", "desc1"));
         tracker.add(new Item("test name1", "desc2"));
-        Input input = new StubInput(new String[]{"4", tracker.getItems()[1].getId(), "6", "y"});
+        Input input = new StubInput(new String[]{"4", tracker.getItems().get(1).getId(), "6", "y"});
         new StartUI(input, tracker).init();
         assertThat(new String(out.toByteArray()), is(
                 menu
                         + "_______________ Поиск заявки по id _______________" + ln
-                        + " id: " + tracker.getItems()[1].getId() + ln
+                        + " id: " + tracker.getItems().get(1).getId() + ln
                         + " Name test name1" + ln
                         + " Содержание: desc1" + ln
                         + "__________________________________________________" + ln
@@ -122,7 +122,7 @@ public class StartUITest {
                 menu
                         + "_______________ Поиск заявки по name _______________" + ln
                         + " _______________ List  Items by Name _______________" + ln
-                        + "  № по порядку 1 id: " + tracker.getItems()[0].getId() + ln
+                        + "  № по порядку 1 id: " + tracker.getItems().get(0).getId() + ln
                         + " Name test name0" + ln
                         + " Содержание: desc0" + ln
                         + "__________________________________________________" + ln
@@ -144,11 +144,11 @@ public class StartUITest {
                 menu
                         + "_______________ Поиск заявки по name _______________" + ln
                         + " _______________ List  Items by Name _______________" + ln
-                        + "  № по порядку 1 id: " + tracker.getItems()[1].getId() + ln
+                        + "  № по порядку 1 id: " + tracker.getItems().get(1).getId() + ln
                         + " Name test name1" + ln
                         + " Содержание: desc1" + ln
                         + "__________________________________________________" + ln
-                        + " № по порядку 2 id: " + tracker.getItems()[2].getId() + ln
+                        + " № по порядку 2 id: " + tracker.getItems().get(2).getId() + ln
                         + " Name test name1" + ln
                         + " Содержание: desc2\r\n__________________________________________________" + ln
                         + "==================================================" + ln + ln
@@ -162,7 +162,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Input input = new StubInput(new String[]{"0", "test name", "desc", "6", "y"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.findAll()[0].getName(), is("test name"));
+        assertThat(tracker.findAll().get(0).getName(), is("test name"));
     }
 
     @Test
@@ -173,7 +173,7 @@ public class StartUITest {
         assertThat(new String(out.toByteArray()), is(
                 menu
                         + "_______________ Добавление новой заявки _______________" + ln
-                        + " _______________ Новая заявка с getId  " + tracker.getItems()[0].getId() + "  принята _______________" + ln
+                        + " _______________ Новая заявка с getId  " + tracker.getItems().get(0).getId() + "  принята _______________" + ln
                         + " " + menu
                 )
         );
@@ -197,7 +197,7 @@ public class StartUITest {
         assertThat(new String(out.toByteArray()), is(
                 menu
                         + "_______________ Изменение  заявки _______________" + ln
-                        + " _______________ Обновление заявки  с id  " + tracker.getItems()[0].getId() + "  выполненно _______________" + ln
+                        + " _______________ Обновление заявки  с id  " + tracker.getItems().get(0).getId() + "  выполненно _______________" + ln
                         + " " + menu
                 )
         );
@@ -226,7 +226,7 @@ public class StartUITest {
         tracker.add(new Item("test name1", "desc1"));
         Input input = new StubInput(new String[]{"3", item0.getId(), "6", "y"});
         new StartUI(input, tracker).init();
-        assertThat(tracker.findAll()[0].getName(), is("test name1"));
+        assertThat(tracker.findAll().get(0).getName(), is("test name1"));
     }
 
     @Test

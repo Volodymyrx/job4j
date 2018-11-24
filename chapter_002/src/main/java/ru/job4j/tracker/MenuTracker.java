@@ -184,7 +184,7 @@ public class MenuTracker {
         @Override
         public void execute() {
             printTitle("List of all Items");
-            Item[] allItem = tracker.findAll();
+            List<Item> allItem = tracker.findAll();
             int count = 0;
             for (Item item : allItem) {
                 System.out.printf(" № по порядку %d id: %s%n Name %s%n Содержание: %s%n%s%n",
@@ -238,7 +238,7 @@ public class MenuTracker {
             printTitle("Поиск заявки по name");
             String name = input.ask("Введите name  заявки которую нужно найти ");
             printTitle("List  Items by Name");
-            Item[] allItem = tracker.findByName(name);
+            List<Item> allItem = tracker.findByName(name);
             int count = 0;
             for (Item item : allItem) {
                 System.out.printf(" № по порядку %d id: %s%n Name %s%n Содержание: %s%n%s%n",
