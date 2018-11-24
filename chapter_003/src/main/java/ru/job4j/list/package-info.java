@@ -2,6 +2,7 @@
  * Package for task-List to array
  * class ConvertList2Array
  * class ConvertMatrix2List
+ * class ConvertList
  *
  * @author Volodymyr Martynenko (VolodymyrV.Martynenko@gmail.com)
  * project job4j lessons 3.4
