@@ -17,6 +17,28 @@ import static org.junit.Assert.*;
  * @since 25.11.2018
  */
 public class SortUserTest {
+    /**
+     * assertThat(setUser.toString(), is( -  как сделать без String? как можно проверить сеты?
+     */
+    @Test
+    public void whenListUserInTreeSetThenOkNew() {
+        SortUser sortUser = new SortUser();
+        List<User> listUser = new ArrayList<>();
+        listUser.add(new User("Ivan", 21));
+        listUser.add(new User("Abraham", 20));
+        listUser.add(new User("Ben", 25));
+        listUser.add(new User("Ben", 21));
+        Set<User> setUser = sortUser.sort(listUser);
+        Iterator<User> it=setUser.iterator();
+        int age1=it.next().getAge();
+        int age2=it.next().getAge();
+        int age3=it.next().getAge();
+        int age4=it.next().getAge();
+        boolean result=(age1<=age2)&&(age2<=age3)&&(age3<=age4);
+        assertThat(result, is(true ));
+    }
+
+
     @Test
     public void whenListUserInTreeSetThenMapThreeUser() {
         SortUser sortUser = new SortUser();
