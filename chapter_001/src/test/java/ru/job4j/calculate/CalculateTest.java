@@ -20,16 +20,16 @@ import static org.junit.Assert.assertThat;
 public class CalculateTest {
     private final String ln = System.lineSeparator();
 
-//    /**
-//     * Test method main.
-//     */
-//    @Test
-//    public void whenAddOneToOneThenTwo() {
-//        ByteArrayOutputStream out = new ByteArrayOutputStream();
-//        System.setOut(new PrintStream(out));
-//        Calculate.main(null);
-//        assertThat(out.toString(), is("Hello World" + ln));
-//    }
+    /**
+     * Test method main.
+     */
+    @Test
+    public void whenAddOneToOneThenTwo() {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        Calculate.main(null);
+        assertThat(out.toString(), is("Hello World" + ln));
+    }
 
     /**
      * Test method echo.
