@@ -83,29 +83,27 @@ public class Departament {
 
         @Override
         public int compare(String o1, String o2) {
-            int result = 0;
+            int result;
             if (o1.length() == o2.length()) {
                 result = o2.compareTo(o1);
             } else if (o1.length() < o2.length()) {
-                for (int i = 0; i < o1.length(); i++) {
-                    result = (o2.charAt(i) + "").compareTo(o1.charAt(i) + "");
-                    if (result != 0) {
-                        break;
-                    }
-                }
-                if (result == 0 && (o2.charAt(o1.length()) == '\\')) {
-                    result = -1;
-                }
+                result = comprareDifLengthRevers(o1, o2);
             } else {
-                for (int i = 0; i < o2.length(); i++) {
-                    result = (o2.charAt(i) + "").compareTo(o1.charAt(i) + "");
-                    if (result != 0) {
-                        break;
-                    }
-                }
-                if (result == 0 && (o1.charAt(o2.length()) == '\\')) {
-                    result = 1;
-                }
+                result = -comprareDifLengthRevers(o2, o1);
+            }
+            return result;
+        }
+
+        /**
+         * util method comprare string diferent length
+         * @param shortSt short String
+         * @param longSt long String
+         * @return int return -1 if short string bigest long Strhing, ziro if Equels , plus 1 if longString bigest
+         */
+        private int comprareDifLengthRevers(String shortSt, String longSt) {
+            int result = -shortSt.compareTo(longSt.substring(0, (shortSt.length())));
+            if (result == 0) {
+                result = -1;
             }
             return result;
         }
