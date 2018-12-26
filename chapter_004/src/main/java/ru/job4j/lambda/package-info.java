@@ -3,6 +3,7 @@
  * class Calculator
  * class MathUtil
  * class UserConvert
+ * class CalculateFunctionTest
  *
  * @author Volodymyr Martynenko (VolodymyrV.Martynenko@gmail.com)
  * project job4j lessons 4.0

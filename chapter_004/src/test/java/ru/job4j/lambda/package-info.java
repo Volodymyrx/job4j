@@ -2,7 +2,7 @@
  * Package for task-lambda
  * class CalculatorTest
  * class MathUtilTest
- * class
+ * class CalculateFunctionTest
  *
  * @author Volodymyr Martynenko (VolodymyrV.Martynenko@gmail.com)
  * project job4j lessons 4.0
