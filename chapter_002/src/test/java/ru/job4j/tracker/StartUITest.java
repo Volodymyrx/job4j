@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.function.Consumer;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -14,13 +15,20 @@ import static org.junit.Assert.assertThat;
  * StartUITest
  *
  * @author Volodymyr Martynenko (VolodymyrV.Martynenko@gmail.com)
- * project job4j lesson 5.2
- * @version 1.4
- * @since 27.10.2018
+ * project job4j lesson 5.2 lesson 004.1.2
+ * @version 2.0
+ * @since 21.01.2019
  */
 public class StartUITest {
-    final PrintStream stdout = System.out;
-    final ByteArrayOutputStream out = new ByteArrayOutputStream();
+    private final StringBuilder sb = new StringBuilder();
+
+    private final Consumer<String> output = new Consumer<String>() {
+        @Override
+        public void accept(String s) {
+            sb.append(s);
+        }
+    };
+
     private final String ln = System.lineSeparator();
     private final String menu = ("Menu" + ln
             + "0. Add new Item" + ln
@@ -33,16 +41,6 @@ public class StartUITest {
             + "Select: " + ln);
 
 
-    @Before
-    public void loadOutput() {
-        System.setOut(new PrintStream(out));
-    }
-
-    @After
-    public void backOutput() {
-        System.setOut(stdout);
-    }
-
     @Test
     public void whenShowAllThenPrintAll() {
         Tracker tracker = new Tracker();
@@ -50,8 +48,8 @@ public class StartUITest {
         tracker.add(new Item("test name1", "desc1"));
         tracker.add(new Item("test name1", "desc2"));
         Input input = new StubInput(new String[]{"1", "6", "y"});
-        new StartUI(input, tracker).init();
-        assertThat(new String(out.toByteArray()), is(
+        new StartUI(input, tracker, output).init();
+        assertThat(this.sb.toString(), is(
                 menu
                         + "_______________ List of all Items _______________" + ln
                         + "  № по порядку 1 id: " + tracker.getItems().get(0).getId() + ln
@@ -78,8 +76,8 @@ public class StartUITest {
         tracker.add(new Item("test name1", "desc1"));
         tracker.add(new Item("test name1", "desc2"));
         Input input = new StubInput(new String[]{"4", tracker.getItems().get(1).getId(), "6", "y"});
-        new StartUI(input, tracker).init();
-        assertThat(new String(out.toByteArray()), is(
+        new StartUI(input, tracker, output).init();
+        assertThat(this.sb.toString(), is(
                 menu
                         + "_______________ Поиск заявки по id _______________" + ln
                         + " id: " + tracker.getItems().get(1).getId() + ln
@@ -99,8 +97,8 @@ public class StartUITest {
         tracker.add(new Item("test name1", "desc1"));
         tracker.add(new Item("test name1", "desc2"));
         Input input = new StubInput(new String[]{"4", "555", "6", "y"});
-        new StartUI(input, tracker).init();
-        assertThat(new String(out.toByteArray()), is(
+        new StartUI(input, tracker, output).init();
+        assertThat(this.sb.toString(), is(
                 menu
                         + "_______________ Поиск заявки по id _______________" + ln
                         + " Item whith id 555 is not found." + ln
@@ -117,8 +115,8 @@ public class StartUITest {
         tracker.add(new Item("test name1", "desc1"));
         tracker.add(new Item("test name1", "desc2"));
         Input input = new StubInput(new String[]{"5", "test name0", "6", "y"});
-        new StartUI(input, tracker).init();
-        assertThat(new String(out.toByteArray()), is(
+        new StartUI(input, tracker, output).init();
+        assertThat(this.sb.toString(), is(
                 menu
                         + "_______________ Поиск заявки по name _______________" + ln
                         + " _______________ List  Items by Name _______________" + ln
@@ -139,8 +137,8 @@ public class StartUITest {
         tracker.add(new Item("test name1", "desc1"));
         tracker.add(new Item("test name1", "desc2"));
         Input input = new StubInput(new String[]{"5", "test name1", "6", "y"});
-        new StartUI(input, tracker).init();
-        assertThat(new String(out.toByteArray()), is(
+        new StartUI(input, tracker, output).init();
+        assertThat(this.sb.toString(), is(
                 menu
                         + "_______________ Поиск заявки по name _______________" + ln
                         + " _______________ List  Items by Name _______________" + ln
@@ -161,7 +159,7 @@ public class StartUITest {
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         Tracker tracker = new Tracker();
         Input input = new StubInput(new String[]{"0", "test name", "desc", "6", "y"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         assertThat(tracker.findAll().get(0).getName(), is("test name"));
     }
 
@@ -169,8 +167,8 @@ public class StartUITest {
     public void whenUserAddItemThenHaveSomeOutputToConsole() {
         Tracker tracker = new Tracker();
         Input input = new StubInput(new String[]{"0", "test name", "desc", "6", "y"});
-        new StartUI(input, tracker).init();
-        assertThat(new String(out.toByteArray()), is(
+        new StartUI(input, tracker, output).init();
+        assertThat(this.sb.toString(), is(
                 menu
                         + "_______________ Добавление новой заявки _______________" + ln
                         + " _______________ Новая заявка с getId  " + tracker.getItems().get(0).getId() + "  принята _______________" + ln
@@ -184,7 +182,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "desc"));
         Input input = new StubInput(new String[]{"2", item.getId(), "test replace", "заменили заявку", "6", "y"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         assertThat(tracker.findById(item.getId()).getName(), is("test replace"));
     }
 
@@ -193,8 +191,8 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "desc"));
         Input input = new StubInput(new String[]{"2", item.getId(), "test replace", "заменили заявку", "6", "y"});
-        new StartUI(input, tracker).init();
-        assertThat(new String(out.toByteArray()), is(
+        new StartUI(input, tracker, output).init();
+        assertThat(this.sb.toString(), is(
                 menu
                         + "_______________ Изменение  заявки _______________" + ln
                         + " _______________ Обновление заявки  с id  " + tracker.getItems().get(0).getId() + "  выполненно _______________" + ln
@@ -208,8 +206,8 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "desc"));
         Input input = new StubInput(new String[]{"2", "555", "6", "y"});
-        new StartUI(input, tracker).init();
-        assertThat(new String(out.toByteArray()), is(
+        new StartUI(input, tracker, output).init();
+        assertThat(this.sb.toString(), is(
                 menu
                         + "_______________ Изменение  заявки _______________" + ln
                         + " Item whith id 555 is not found." + ln
@@ -225,7 +223,7 @@ public class StartUITest {
         Item item0 = tracker.add(new Item("test name0", "desc0"));
         tracker.add(new Item("test name1", "desc1"));
         Input input = new StubInput(new String[]{"3", item0.getId(), "6", "y"});
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         assertThat(tracker.findAll().get(0).getName(), is("test name1"));
     }
 
@@ -235,8 +233,8 @@ public class StartUITest {
         Item item0 = tracker.add(new Item("test name0", "desc0"));
         tracker.add(new Item("test name1", "desc1"));
         Input input = new StubInput(new String[]{"3", item0.getId(), "6", "y"});
-        new StartUI(input, tracker).init();
-        assertThat(new String(out.toByteArray()), is(
+        new StartUI(input, tracker, output).init();
+        assertThat(this.sb.toString(), is(
                 menu
                         + "_______________ Удаление  заявки _______________" + ln
                         + " _______________ Заявка с id " + item0.getId() + " удалена _______________" + ln
@@ -251,8 +249,8 @@ public class StartUITest {
         Item item0 = tracker.add(new Item("test name0", "desc0"));
         tracker.add(new Item("test name1", "desc1"));
         Input input = new StubInput(new String[]{"3", "555", "6", "y"});
-        new StartUI(input, tracker).init();
-        assertThat(new String(out.toByteArray()), is(
+        new StartUI(input, tracker, output).init();
+        assertThat(this.sb.toString(), is(
                 menu
                         + "_______________ Удаление  заявки _______________" + ln
                         + " Item whith id 555 is not found." + ln
@@ -266,8 +264,8 @@ public class StartUITest {
     public void whenExitThenExit() {
         Tracker tracker = new Tracker();
         Input input = new StubInput(new String[]{"6", "y"});
-        new StartUI(input, tracker).init();
-        assertThat(new String(out.toByteArray()), is(menu)
+        new StartUI(input, tracker, output).init();
+        assertThat(this.sb.toString(), is(menu)
         );
     }
 }

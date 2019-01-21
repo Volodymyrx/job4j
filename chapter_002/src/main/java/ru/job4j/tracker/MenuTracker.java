@@ -2,17 +2,22 @@ package ru.job4j.tracker;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * MenuTracker
  * part of project tracker
  *
  * @author Volodymyr Martynenko (VolodymyrV.Martynenko@gmail.com)
- * project job4j lesson 5.1
- * @version 1.4
- * @since 22.10.2018
+ * project job4j lesson 5.2 lesson 004.1.2
+ * @version 2.0
+ * @since 21.01.2019
  */
 public class MenuTracker {
+    /**
+     * System.out.printf
+     */
+    private final Consumer<String> output;
     /**
      * хранит ссылку на объект .
      */
@@ -75,9 +80,10 @@ public class MenuTracker {
      * @param input   объект типа Input
      * @param tracker объект типа Tracker
      */
-    public MenuTracker(Input input, Tracker tracker) {
+    public MenuTracker(Input input, Tracker tracker, Consumer<String> output) {
         this.input = input;
         this.tracker = tracker;
+        this.output = output;
     }
 
     /**
@@ -112,13 +118,14 @@ public class MenuTracker {
      * Метод выводит на экран меню.
      */
     public void show() {
-        System.out.println("Menu");
+        output.accept(String.format("Menu%n"));
         for (UserAction action : this.actions) {
             if (action != null) {
-                System.out.println(action.info());
+//                System.out.println(action.info());
+                this.output.accept(String.format("%s%n", action.info()));
             }
         }
-        System.out.println("Select: ");
+        this.output.accept(String.format("%s%n", "Select: "));
     }
 
     /**
@@ -127,7 +134,7 @@ public class MenuTracker {
      * @param title -title string
      */
     private void printTitle(String title) {
-        System.out.printf("%s %s %s%n ", lineShort, title, lineShort);
+        this.output.accept(String.format("%s %s %s%n ", lineShort, title, lineShort));
     }
 
     /**
@@ -187,10 +194,10 @@ public class MenuTracker {
             List<Item> allItem = tracker.findAll();
             int count = 0;
             for (Item item : allItem) {
-                System.out.printf(" № по порядку %d id: %s%n Name %s%n Содержание: %s%n%s%n",
-                        ++count, item.getId(), item.getName(), item.getDesctiption(), lineLong);
+                output.accept(String.format(" № по порядку %d id: %s%n Name %s%n Содержание: %s%n%s%n",
+                        ++count, item.getId(), item.getName(), item.getDesctiption(), lineLong));
             }
-            System.out.printf("%s%n%n", lineLongDouble);
+            output.accept(String.format("%s%n%n", lineLongDouble));
         }
     }
 
@@ -212,11 +219,11 @@ public class MenuTracker {
             String id = input.ask("Введите id  заявки которую нужно найти ");
             if (isId(id)) {
                 Item foundItemId = tracker.findById(id);
-                System.out.printf("id: %s%n Name %s%n Содержание: %s%n%s%n",
-                        foundItemId.getId(), foundItemId.getName(), foundItemId.getDesctiption(), lineLong);
-                System.out.printf("%s%n%n", lineLongDouble);
+                output.accept(String.format("id: %s%n Name %s%n Содержание: %s%n%s%n",
+                        foundItemId.getId(), foundItemId.getName(), foundItemId.getDesctiption(), lineLong));
+                output.accept(String.format("%s%n%n", lineLongDouble));
             } else {
-                System.out.printf("Item whith id %s is not found.%n%s%n%n", id, lineLongDouble);
+                output.accept(String.format("Item whith id %s is not found.%n%s%n%n", id, lineLongDouble));
             }
         }
     }
@@ -241,10 +248,10 @@ public class MenuTracker {
             List<Item> allItem = tracker.findByName(name);
             int count = 0;
             for (Item item : allItem) {
-                System.out.printf(" № по порядку %d id: %s%n Name %s%n Содержание: %s%n%s%n",
-                        ++count, item.getId(), item.getName(), item.getDesctiption(), lineLong);
+                output.accept(String.format(" № по порядку %d id: %s%n Name %s%n Содержание: %s%n%s%n",
+                        ++count, item.getId(), item.getName(), item.getDesctiption(), lineLong));
             }
-            System.out.printf("%s%n%n", lineLongDouble);
+            output.accept(String.format("%s%n%n", lineLongDouble));
         }
     }
 
@@ -289,7 +296,7 @@ public class MenuTracker {
                 tracker.replace(id, item);
                 printTitle("Обновление заявки  с id  " + item.getId() + "  выполненно");
             } else {
-                System.out.printf("Item whith id %s is not found.%n%s%n%n", id, lineLongDouble);
+                output.accept(String.format("Item whith id %s is not found.%n%s%n%n", id, lineLongDouble));
             }
         }
     }
@@ -314,7 +321,7 @@ public class MenuTracker {
                 tracker.delete(id);
                 printTitle("Заявка с id " + id + " удалена");
             } else {
-                System.out.printf("Item whith id %s is not found.%n%s%n%n", id, lineLongDouble);
+                output.accept(String.format("Item whith id %s is not found.%n%s%n%n", id, lineLongDouble));
             }
         }
     }
