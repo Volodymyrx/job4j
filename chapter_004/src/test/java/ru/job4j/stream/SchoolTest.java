@@ -27,25 +27,13 @@ public class SchoolTest {
             new Student("Ula", 69),
             new Student("Jon", 55)
     );
-    private final List<Student> group10A = Arrays.asList(
-            new Student("Pavel", 75),
-            new Student("Inna", 98)
-    );
-    private final List<Student> group10B = Arrays.asList(
-            new Student("Ula", 69),
-            new Student("Jon", 55)
-    );
-    private final List<Student> group10C = Arrays.asList(
-            new Student("Ivan", 45),
-            new Student("Olga", 30)
-    );
 
     @Test
     public void whenGroup10A() {
         List<Student> resultList =
                 school.collect(students, student ->
                         student.getScore() > 70 && student.getScore() <= 100);
-        String expect = toName(this.group10A);
+        String expect = "Pavel, Inna";
         String result = toName(resultList);
         assertThat(result, is(expect));
     }
@@ -56,7 +44,7 @@ public class SchoolTest {
         List<Student> resultList =
                 school.collect(students, student ->
                         student.getScore() > 50 && student.getScore() <= 70);
-        String expect = toName(this.group10B);
+        String expect = "Ula, Jon";
         String result = toName(resultList);
         assertThat(result, is(expect));
     }
@@ -67,7 +55,7 @@ public class SchoolTest {
         List<Student> resultList =
                 school.collect(students, student ->
                         student.getScore() >= 0 && student.getScore() <= 50);
-        String expect = toName(this.group10C);
+        String expect = "Ivan, Olga";
         String result = toName(resultList);
         assertThat(result, is(expect));
     }
@@ -84,7 +72,7 @@ public class SchoolTest {
         for (Student student : students) {
             sb.append(student.getName()).append(", ");
         }
-        sb.deleteCharAt(sb.length() - 2);
+        sb.deleteCharAt(sb.length() - 1).deleteCharAt(sb.length() - 1);
         return sb.toString();
     }
 
