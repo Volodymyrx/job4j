@@ -1,5 +1,6 @@
 /**
  * class SchoolTest
+ * class ProfilesTest
  *
  * @author Volodymyr Martynenko (VolodymyrV.Martynenko@gmail.com)
  * project job4j lessons 4.2.2
