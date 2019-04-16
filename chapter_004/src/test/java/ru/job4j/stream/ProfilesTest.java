@@ -11,12 +11,12 @@ import static org.junit.Assert.*;
 
 /**
  * class ProfilesTest
- * project lesson 4.2.2
+ * project lesson 4.2.3
  *
  * @author Volodymyr Martynenko (VolodymyrV.Martynenko@gmail.com)
  * project job4j
- * @version 1.0
- * @since 17.03.2019
+ * @version 1.1
+ * @since 16.04.2019
  */
 public class ProfilesTest {
 
@@ -26,15 +26,20 @@ public class ProfilesTest {
             new Profile(new Address("Odessa", "Lenin", 10, 45)),
             new Profile(new Address("Ufa", "Victory", 122, 435)),
             new Profile(new Address("London", "Pushkins", 98, 67)),
+            new Profile(new Address("London", "Pushkins", 98, 67)),
+            new Profile(new Address("London", "Pushkins", 98, 67)),
+            new Profile(new Address("London", "Pushkins", 98, 66)),
+            new Profile(new Address("Odessa", "Lenin", 10, 45)),
             new Profile(new Address("Vologda", "Apples", 23, 34)),
             new Profile(new Address("Rostov", "Central", 54, 86))
     );
     private final List<Address> addressesExpect = Arrays.asList(
-            new Address("Odessa", "Lenin", 10, 45),
-            new Address("Ufa", "Victory", 122, 435),
             new Address("London", "Pushkins", 98, 67),
-            new Address("Vologda", "Apples", 23, 34),
-            new Address("Rostov", "Central", 54, 86)
+            new Address("London", "Pushkins", 98, 66),
+            new Address("Odessa", "Lenin", 10, 45),
+            new Address("Rostov", "Central", 54, 86),
+            new Address("Ufa", "Victory", 122, 435),
+            new Address("Vologda", "Apples", 23, 34)
     );
 
 

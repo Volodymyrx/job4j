@@ -1,5 +1,6 @@
 package ru.job4j.stream;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,20 +10,21 @@ import java.util.stream.Collectors;
  *
  * @author Volodymyr Martynenko (VolodymyrV.Martynenko@gmail.com)
  * project job4j
- * @version 1.0
- * @since 17.03.2019
+ * @version 1.1
+ * @since 16.04.2019
  */
 public class Profiles {
 
     /**
-     * method convert List Profile to List Address
+     * method convert List Profile to List Address without equals address an sort by city
+     *
      * @param profiles List of Profile
      * @return List of Address
      */
     List<Address> collect(List<Profile> profiles) {
         return profiles.stream().map(
                 Profile::getAddress
-        ).collect(Collectors.toList());
+        ).distinct().sorted(Comparator.comparing(Address::getCity)).collect(Collectors.toList());
     }
 
 
